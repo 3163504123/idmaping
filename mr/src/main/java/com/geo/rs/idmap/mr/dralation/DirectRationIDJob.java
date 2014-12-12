@@ -10,6 +10,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.JobConf;
+import org.apache.hadoop.mapred.SkipBadRecords;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
@@ -32,22 +33,25 @@ public class DirectRationIDJob {
 				.getRemainingArgs();
 
 		if (userArgs.length < 2) {
-			System.err.println("input <in> <out> args!");
+			System.err.println("input <in> <out> <reduce num>!");
 			return;
 		}
 
 		Job job = new Job(conf, "IDMapingJob");
-
 		job.setInputFormatClass(AvroKeyInputFormat.class);
 		AvroJob.setInputKeySchema(job, Http.getClassSchema());
 
 		job.setJarByClass(DirectRationIDMR.class);
 		job.setMapperClass(DirectRationIDMap.class);
+		//job.setCombinerClass(DirectRationIDReduce.class);
 		job.setReducerClass(DirectRationIDReduce.class);
 		job.setMapOutputKeyClass(Text.class);
 		job.setMapOutputValueClass(IntWritable.class);
 
-		job.setNumReduceTasks(6);
+		SkipBadRecords.setMapperMaxSkipRecords(conf, 1000);
+		SkipBadRecords.setAttemptsToStartSkipping(conf, 5);
+
+		job.setNumReduceTasks(args.length > 2 ? Integer.parseInt(args[2]) : 6);
 
 		FileInputFormat.addInputPath(job, new Path(userArgs[0]));
 		FileOutputFormat.setOutputPath(job, new Path(userArgs[1]));

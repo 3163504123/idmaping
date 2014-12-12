@@ -42,7 +42,7 @@ public class AppIDSearcher {
 		// 得到GEOID
 		idMap.put(Constant.USERID_GEO, http.getGeoId());
 
-		// 得到weibo帐号
+		/*// 得到weibo帐号
 		if (http.getHost().contains(".weibo.")
 				|| http.getHost().contains(".sina.")) {
 			String urlParam = http.getUrlParams().get("uid");
@@ -77,6 +77,7 @@ public class AppIDSearcher {
 				idMap.put(Constant.USERID_TAOBAO, taobaoID);
 			}
 		}
+		*/
 
 		return idMap;
 	}

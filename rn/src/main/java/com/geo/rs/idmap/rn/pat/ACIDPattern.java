@@ -20,15 +20,43 @@ public class ACIDPattern extends ACPattern {
 	private String decodeCharset = "UTF-8";
 	private String validateRegular;
 	private Pattern validatePat;
+	private String urlPattern;
 
-	public ACIDPattern(String idType, String pos, String segName,
-			int needDecoderCnt, String decodeCharset, String validateRegular) {
+	public String getValidateRegular() {
+		return validateRegular;
+	}
+
+	public void setValidateRegular(String validateRegular) {
+		this.validateRegular = validateRegular;
+	}
+
+	public Pattern getValidatePat() {
+		return validatePat;
+	}
+
+	public void setValidatePat(Pattern validatePat) {
+		this.validatePat = validatePat;
+	}
+
+	public String getUrlPattern() {
+		return urlPattern;
+	}
+
+	public void setUrlPattern(String urlPattern) {
+		this.urlPattern = urlPattern;
+	}
+
+	public ACIDPattern(String urlPattern, String idType, String pos,
+			String segName, int needDecoderCnt, String decodeCharset,
+			String validateRegular) {
 		this.idType = idType;
 		this.pos = pos;
 		this.segName = segName;
 		this.needDecoderCnt = needDecoderCnt;
 		this.decodeCharset = decodeCharset;
 		this.validateRegular = validateRegular;
+		this.urlPattern = urlPattern;
+		
 		if (this.validateRegular != null) {
 			try {
 				this.validatePat = Pattern.compile(validateRegular);
@@ -39,9 +67,9 @@ public class ACIDPattern extends ACPattern {
 		}
 	}
 
-	public ACIDPattern(String idType, String pos, String segName,
-			String validateRegular) {
-		this(idType, pos, segName, 0, segName, validateRegular);
+	public ACIDPattern(String urlPattern, String idType, String pos,
+			String segName, String validateRegular) {
+		this(urlPattern, idType, pos, segName, 0, segName, validateRegular);
 	}
 
 	public String getIdType() {
@@ -89,7 +117,7 @@ public class ACIDPattern extends ACPattern {
 		for (int i = 0; i < needDecoderCnt; i++) {
 			try {
 				midStr = URLDecoder.decode(midStr, decodeCharset);
-			} catch (UnsupportedEncodingException e) {
+			} catch (Exception e) {
 				log.warn(String.format("decode seg value [%s]error", midStr));
 				return null;
 			}

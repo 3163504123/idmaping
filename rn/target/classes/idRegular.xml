@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pdMonitor>
+
+	<!-- QQ好友和QQ -->
+
+	<idPatItem idType="mqq" patternPos="URL" patternUrl=".qq."
+		segPosition="COOKIE" segName="o_cookie" validateRegular="\d{5,12}"
+		decodeCnt="0" decodeCode="UTF-8" />
+	<idPatItem idType="mqq" patternPos="URL" patternUrl=".qq."
+		segPosition="URL" segName="iqq" validateRegular="\d{5,12}" decodeCnt="0"
+		decodeCode="UTF-8" />
+
+	<idPatItem idType="fqq" patternPos="URL" patternUrl=".qq."
+		segPosition="URL" segName="dstuin" validateRegular="\d{5,12}"
+		decodeCnt="0" decodeCode="UTF-8" />
+	<idPatItem idType="fqq" patternPos="URL" patternUrl=".qq."
+		segPosition="URL" segName="touin" validateRegular="\d{5,12}"
+		decodeCnt="0" decodeCode="UTF-8" />
+	<idPatItem idType="fqq" patternPos="URL" patternUrl=".qq."
+		segPosition="URL" segName="dstuin" validateRegular="\d{5,12}"
+		decodeCnt="0" decodeCode="UTF-8" />
+	<idPatItem idType="fqq" patternPos="URL" patternUrl=".qq."
+		segPosition="URL" segName="openuin" validateRegular="\d{5,12}"
+		decodeCnt="0" decodeCode="UTF-8" />
+	<idPatItem idType="fqq" patternPos="URL" patternUrl=".qq."
+		segPosition="URL" segName="guestuin" validateRegular="\d{5,12}"
+		decodeCnt="0" decodeCode="UTF-8" />
+
+
+	<idPatItem idType="mqq" patternPos="REFER" patternUrl=".qq."
+		segPosition="REFER" segName="iqq" validateRegular="\d{5,12}"
+		decodeCnt="0" decodeCode="UTF-8" />
+	<idPatItem idType="fqq" patternPos="REFER" patternUrl=".qq."
+		segPosition="REFER" segName="dstuin" validateRegular="\d{5,12}"
+		decodeCnt="0" decodeCode="UTF-8" />
+	<idPatItem idType="fqq" patternPos="REFER" patternUrl=".qq."
+		segPosition="REFER" segName="touin" validateRegular="\d{5,12}"
+		decodeCnt="0" decodeCode="UTF-8" />
+	<idPatItem idType="fqq" patternPos="REFER" patternUrl=".qq."
+		segPosition="REFER" segName="dstuin" validateRegular="\d{5,12}"
+		decodeCnt="0" decodeCode="UTF-8" />
+	<idPatItem idType="fqq" patternPos="REFER" patternUrl=".qq."
+		segPosition="REFER" segName="openuin" validateRegular="\d{5,12}"
+		decodeCnt="0" decodeCode="UTF-8" />
+	<idPatItem idType="fqq" patternPos="REFER" patternUrl=".qq."
+		segPosition="REFER" segName="guestuin" validateRegular="\d{5,12}"
+		decodeCnt="0" decodeCode="UTF-8" />
+
+	<!-- weiboinerid -->
+	<idPatItem idType="interWebo" patternPos="URL" patternUrl=".weibo."
+		segPosition="URL" segName="uid" validateRegular="\d{10}" decodeCnt="0"
+		decodeCode="UTF-8" />
+
+	<idPatItem idType="interWebo" patternPos="REFER" patternUrl=".weibo."
+		segPosition="REFER" segName="uid" validateRegular="\d{10}" decodeCnt="0"
+		decodeCode="UTF-8" />
+
+	<idPatItem idType="interWebo" patternPos="URL" patternUrl=".sina."
+		segPosition="URL" segName="uid" validateRegular="\d{10}" decodeCnt="0"
+		decodeCode="UTF-8" />
+
+	<idPatItem idType="interWebo" patternPos="REFER" patternUrl=".sina."
+		segPosition="REFER" segName="uid" validateRegular="\d{10}" decodeCnt="0"
+		decodeCode="UTF-8" />
+
+
+	<!-- taobao -->
+	<idPatItem idType="taobao" patternPos="URL" patternUrl=".taobao."
+		segPosition="COOKIE" segName="lgc" validateRegular=".*" decodeCnt="1"
+		decodeCode="UTF-8" />
+	<idPatItem idType="taobao" patternPos="URL" patternUrl=".taobao."
+		segPosition="COOKIE" segName="tracknick" validateRegular=".*"
+		decodeCnt="1" decodeCode="UTF-8" />
+
+
+
+	<!-- tmall -->
+	<idPatItem idType="taobao" patternPos="URL" patternUrl=".tmall."
+		segPosition="COOKIE" segName="lgc" validateRegular=".*" decodeCnt="0"
+		decodeCode="UTF-8" />
+	<idPatItem idType="taobao" patternPos="URL" patternUrl=".tmall."
+		segPosition="COOKIE" segName="tracknick" validateRegular=".*"
+		decodeCnt="1" decodeCode="UTF-8" />
+
+
+
+
+</pdMonitor>

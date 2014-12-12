@@ -50,6 +50,7 @@ public class DirectRationIDMR {
 				String idMap = iterator.next();
 				k.set(idMap);
 				context.write(k, one);
+				
 			}
 
 		}
