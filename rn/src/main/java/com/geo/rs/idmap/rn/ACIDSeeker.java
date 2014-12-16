@@ -78,15 +78,14 @@ public class ACIDSeeker {
 		}
 
 	}
-
 	public static void main(String[] args) {
 		GeoHttp http = new GeoHttp(
-				"v.gdt.qq.com",
-				"/gdt_stats.fcg?viewid=iH9U!EQjo!_JU1bC!5GFLaMZzsawgFf2p9UPIG8nV6xbID_oitNE6k7hiQ5P06piNNPLyOI8h0pF8y!RPRc0fVugrTbZXce26F1uByKh61HdkC3JUEBL4gTJahU821H2&i=1&datatype=jsonp&callback=_cb_gdtjson1",
+				"www.weibo.cn",
+				"/interface/win/winad.php?aduserid=863360026352173&ua=Xiaomi-MI+3W__weibo__4.6.2__android__android4.4.4&wm=4209_8001&net=0&uid=3462510284&from=1046295010&gsid=4uj0a8663OPVrLBGtwTP2ewKW4A&info=180150000%2B180150000&size=460x308&dinfo=774566121533850845_773911673799085732&posid=pos501b377373ec5&sdkversion=1&platform=android",
 				"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36",
 				"10.111.23.214",
 				"201402220111",
-				"snsuid=137221430210376; gdtrst=1366*768; qz_gdtinner=2dqigvapaaafoekqu35q; RK=GYnL27DROK; pt2gguin=o0361849250; ptcz=59b302530c393dbf83daade6e87bd25b4a701da7bb44eb6d971af99e2581a7ab; pgv_info=ssid=s1619843223; pgv_pvid=2923141782; o_cookie=361849250;",
+				"snsuid=137221430210376; gdtrst=1366*768; qz_gdtinner=2dqigvapaaafoekqu35q; RK=GYnL27DROK; pt2gguin=o0361849250; ptcz=59b302530c393dbf83daade6e87bd25b4a701da7bb44eb6d971af99e2581a7ab; pgv_info=ssid=s1619843223; pgv_pvid=2923141782;",
 				"xxx",
 				"http://union.paipai.com/billboard/minsite/ads/qq_index_big.shtml");
 		Map<String, String> map1 = new HashMap<String, String>();

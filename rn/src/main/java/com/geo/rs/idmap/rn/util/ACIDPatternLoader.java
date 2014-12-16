@@ -81,31 +81,42 @@ public class ACIDPatternLoader {
 				patternUrl = element.attribute("patternUrl").getText();
 				String pos = element.attribute("segPosition").getText();
 				String segName = element.attribute("segName").getText();
-				String needDecoderCnt = element.attribute("decodeCnt")
-						.getText();
+				String needDecoderCnt = element.attribute("decodeCnt") == null ? "0"
+						: element.attribute("decodeCnt").getText();
 
-				String decodeCharset = element.attribute("decodeCode")
-						.getText();
-				String validateRegular = element.attribute("validateRegular")
-						.getText();
+				String decodeCharset = element.attribute("decodeCode") == null ? "UTF-8"
+						: element.attribute("decodeCode").getText();
+
+				String validateRegular = element.attribute("validateRegular") == null ? null
+						: element.attribute("validateRegular").getText();
+
+				String regularExtractIndex = element
+						.attribute("extractRegularIndex") == null ? "-1"
+						: element.attribute("extractRegularIndex").getText();
+
 				logger.info(String
-						.format("patternPos:%s\tpatternUrl：%s\tpos:%s\tsegName:%s\tneedDocoderCnt:%s\tdecodeCharset:%s\tvalidateRegular:%s\tidType:%s",
+						.format("patternPos:%s\tpatternUrl：%s\tpos:%s\tsegName:%s\tneedDocoderCnt:%s\tdecodeCharset:%s\tvalidateRegular:%s\tidType:%s\tRegularExtractIndex:%s",
 								patternPos, patternUrl, pos, segName,
 								needDecoderCnt, decodeCharset, validateRegular,
-								idType));
+								idType,regularExtractIndex));
+				
 				if (patternPos.equalsIgnoreCase(GeoHttp.URL)) {
 					urlACIDPatternList.add(new ACIDPattern(patternUrl, idType,
 							pos, segName, Integer.parseInt(needDecoderCnt),
-							decodeCharset, validateRegular));
+							decodeCharset, validateRegular,Integer
+							.parseInt(regularExtractIndex)));
 				} else if (patternPos.equalsIgnoreCase(GeoHttp.REFER)) {
 					referACIDPatternList.add(new ACIDPattern(patternUrl,
 							idType, pos, segName, Integer
 									.parseInt(needDecoderCnt), decodeCharset,
-							validateRegular));
+							validateRegular,Integer
+							.parseInt(regularExtractIndex)));
 				}
 
 			} catch (Exception e2) {
-				logger.error(String.format("load attr Error [url :] "), e2);
+				logger.error(
+						String.format("id SourceFile Error,Please Check!! "),
+						e2);
 			}
 
 		}

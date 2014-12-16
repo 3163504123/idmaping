@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pdMonitor>
 
+
+	<!-- imei -->
+	<idPatItem idType="imei" patternPos="URL" patternUrl=".mobile.sina.cn"
+		segPosition="URL" segName="aduserid" validateRegular="\d{15}"
+		decodeCnt="0" decodeCode="UTF-8" />
+	<idPatItem idType="imei" patternPos="URL" patternUrl=".weibo.cn"
+		segPosition="URL" segName="aduserid" validateRegular="\d{15}"
+		decodeCnt="0" decodeCode="UTF-8" />
+	<idPatItem idType="imei" patternPos="REFER" patternUrl=".mobile.sina.cn"
+		segPosition="REFER" segName="aduserid" validateRegular="\d{15}"
+		decodeCnt="0" decodeCode="UTF-8" />
+	<idPatItem idType="imei" patternPos="REFER" patternUrl=".weibo.cn"
+		segPosition="REFER" segName="aduserid" validateRegular="\d{15}"
+		decodeCnt="0" decodeCode="UTF-8" />
+
 	<!-- QQ好友和QQ -->
 
 	<idPatItem idType="mqq" patternPos="URL" patternUrl=".qq."
@@ -9,6 +24,24 @@
 	<idPatItem idType="mqq" patternPos="URL" patternUrl=".qq."
 		segPosition="URL" segName="iqq" validateRegular="\d{5,12}" decodeCnt="0"
 		decodeCode="UTF-8" />
+
+	<idPatItem idType="mqq" patternPos="URL" patternUrl=".qq."
+		segPosition="COOKIE" segName="uin_cookie" validateRegular="[^\d]*0*(\d{5,12})"
+		decodeCnt="0" decodeCode="UTF-8" extractRegularIndex="1" />
+
+	<idPatItem idType="mqq" patternPos="URL" patternUrl=".qq."
+		segPosition="COOKIE" segName="pt2gguin" validateRegular="[^\d]*0*(\d{5,12})"
+		decodeCnt="0" decodeCode="UTF-8" extractRegularIndex="1" />
+
+
+	<idPatItem idType="mqq" patternPos="URL" patternUrl=".paipai."
+		segPosition="COOKIE" segName="uin_cookie" validateRegular="[^\d]*0*(\d{5,12})"
+		decodeCnt="0" decodeCode="UTF-8" extractRegularIndex="1" />
+
+	<idPatItem idType="mqq" patternPos="URL" patternUrl=".paipai."
+		segPosition="COOKIE" segName="pt2gguin" validateRegular="[^\d]*0*(\d{5,12})"
+		decodeCnt="0" decodeCode="UTF-8" extractRegularIndex="1" />
+
 
 	<idPatItem idType="fqq" patternPos="URL" patternUrl=".qq."
 		segPosition="URL" segName="dstuin" validateRegular="\d{5,12}"

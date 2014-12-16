@@ -42,7 +42,7 @@ public class GeoHttp {
 		this.refer = (refer == null) ? "" : refer;
 		urlParams = GeoStringUtils.spilitToMap("?&", "=", this.uri);
 		referParams = GeoStringUtils.spilitToMap("?&", "=", this.refer);
-		cookieParams = GeoStringUtils.spilitToMap(";", "=", this.cookie);
+		cookieParams = GeoStringUtils.spilitToMap(" ;", "=", this.cookie);
 		int uriparamStartIndex = uri.lastIndexOf("?");
 		if (uriparamStartIndex <= 0) {
 			uriparamStartIndex = this.uri.length();

@@ -26,7 +26,7 @@ public class AppIDSearcher {
 		String imsi = getParamsFromAllParam("imsi", http.getUrlParams(),
 				http.getReferParams(), http.getCookieParams());
 
-		if (imsi != null && imsi.matches("\\d{15}")) {
+		if (imsi != null && imsi.matches("460\\d{12}")) {
 			idMap.put(Constant.USERID_IMSI, imsi);
 		}
 
@@ -86,7 +86,7 @@ public class AppIDSearcher {
 			Map<String, String> urlParams, Map<String, String> referParams,
 			Map<String, String> cookieParams) {
 		String findValue = urlParams.get(findstr);
-		if (findValue == null) {
+		if (findValue == null || findValue.length()==0) {
 			findValue = referParams.get(findstr);
 			if (findValue == null) {
 				findValue = cookieParams.get(findValue);

@@ -3,6 +3,7 @@ package com.geo.rs.idmap.rn.pat;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Map;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.logging.Log;
@@ -21,6 +22,7 @@ public class ACIDPattern extends ACPattern {
 	private String validateRegular;
 	private Pattern validatePat;
 	private String urlPattern;
+	private int regularExtractIndex = -1;
 
 	public String getValidateRegular() {
 		return validateRegular;
@@ -48,7 +50,7 @@ public class ACIDPattern extends ACPattern {
 
 	public ACIDPattern(String urlPattern, String idType, String pos,
 			String segName, int needDecoderCnt, String decodeCharset,
-			String validateRegular) {
+			String validateRegular, int regularExtractIndex) {
 		this.idType = idType;
 		this.pos = pos;
 		this.segName = segName;
@@ -56,6 +58,7 @@ public class ACIDPattern extends ACPattern {
 		this.decodeCharset = decodeCharset;
 		this.validateRegular = validateRegular;
 		this.urlPattern = urlPattern;
+		this.regularExtractIndex = regularExtractIndex;
 		
 		if (this.validateRegular != null) {
 			try {
@@ -69,7 +72,7 @@ public class ACIDPattern extends ACPattern {
 
 	public ACIDPattern(String urlPattern, String idType, String pos,
 			String segName, String validateRegular) {
-		this(urlPattern, idType, pos, segName, 0, segName, validateRegular);
+		this(urlPattern, idType, pos, segName, 0, segName, validateRegular,-1);
 	}
 
 	public String getIdType() {
@@ -146,6 +149,17 @@ public class ACIDPattern extends ACPattern {
 							.matches())) {
 				String targetValue = decode(segValue);
 				if (targetValue != null) {
+					if(regularExtractIndex > 0) {
+						Matcher mt = validatePat.matcher(targetValue);
+						if(mt.find()) {
+							try {
+								targetValue = mt.group(regularExtractIndex);
+							} catch (Exception e) {
+								log.warn(e);
+								return;
+							}
+						}
+					}
 					idMap.put(idType, targetValue);
 				}
 			}

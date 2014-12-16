@@ -16,6 +16,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.output.MultipleOutputs;
 
 import com.geo.dmp.model.Http;
+import com.geo.rs.idmap.mr.utils.Constants;
 import com.geo.rs.idmap.rn.AppIDSearcher;
 import com.geo.rs.idmap.rn.bean.GeoHttp;
 import com.geo.rs.idmap.rn.util.Constant;
@@ -50,7 +51,6 @@ public class DirectRationIDMR {
 				String idMap = iterator.next();
 				k.set(idMap);
 				context.write(k, one);
-				
 			}
 
 		}
@@ -77,7 +77,15 @@ public class DirectRationIDMR {
 			}
 
 			String[] segs = key.toString().split("\005");
-			mos.write("IDMAP", segs[1], new IntWritable(count), segs[0] + "/");
+
+			String outputDir = String.format(
+					"%s/%s/%s",
+					output.getConfiguration().get(Constants.OUTPUT_FILE_PRIFIX),
+					segs[0],
+					output.getConfiguration().get(Constants.OUTPUT_FILE_SUFFIX)
+					);
+			
+			mos.write("IDMAP", segs[1], new IntWritable(count), outputDir);
 		}
 
 		@Override
@@ -85,6 +93,23 @@ public class DirectRationIDMR {
 				Reducer<Text, IntWritable, Text, IntWritable>.Context context)
 				throws IOException, InterruptedException {
 			mos.close();
+		}
+	}
+
+	public static class DirectRationIDCombiner extends
+			Reducer<Text, IntWritable, Text, IntWritable> {
+
+		private IntWritable value = new IntWritable(0);
+
+		protected void reduce(Text key, Iterable<IntWritable> values,
+				Context output) throws IOException, InterruptedException {
+			int count = 0;
+			Iterator<IntWritable> itor = values.iterator();
+			while (itor.hasNext()) {
+				count += itor.next().get();
+			}
+			value.set(count);
+			output.write(key, value);
 		}
 	}
 
